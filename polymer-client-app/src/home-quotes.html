@@ -19,15 +19,14 @@
     </iron-ajax>
     <div class="card">
       <div class="circle">1</div>
-      <h1>View One</h1>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per
-        in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+      <h1>Quotes</h1>
+      <blockquote>[[quote]]</blockquote>
+      <paper-button raised on-tap="getQuote" class="primary">Get a New Quote</paper-button>
     </div>
   </template>
 
   <script>
-    class MyView1 extends Polymer.Element {
+    class HomeQuotes extends Polymer.Element {
       static get is() { return 'home-quotes'; }
     }
 
