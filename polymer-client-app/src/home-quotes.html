@@ -28,8 +28,11 @@
   <script>
     class HomeQuotes extends Polymer.Element {
       static get is() { return 'home-quotes'; }
+    
+      getQuote() {
+        this.$.getQuoteAjax.generateRequest();
+      }
     }
-
     window.customElements.define(HomeQuotes.is, HomeQuotes);
   </script>
 </dom-module>
