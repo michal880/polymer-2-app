@@ -21,6 +21,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="my-icons.html">
+<link rel="import" href="log-out.html">
 
 <link rel="lazy-import" href="home-quotes.html">
 <link rel="lazy-import" href="secret-quotes.html">
@@ -28,8 +29,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="lazy-import" href="not-found.html">
 
 
-<link rel="import" href="log-out.html">
+
+
 <app-location route="{{route}}"></app-location>
+
 <dom-module id="my-app">
   <template>
     <style>
@@ -76,14 +79,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <app-route route="{{route}}" pattern="[[rootPath]]:page" data="{{routeData}}" tail="{{subroute}}">
     </app-route>
+    
+    <iron-localstorage name="user-storage" value="{{storedUser}}"></iron-localstorage>
+    <brum-global-variable key="userData" value="{{storedUser}}"></brum-global-variable>
 
     <app-drawer-layout fullbleed narrow="{{narrow}}">
       <!-- Drawer content -->
       <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
         <app-toolbar>Menu</app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="home-quotes" href="[[rootPath]]home-quotes">Home</a>
-          <a name="secret-quotes" href="[[rootPath]]secret-quotes">Secret Quotes</a>
+          <div name="home-quotes">
+            <a href="[[rootPath]]home-quotes">Home</a>
+          </div>
+          <div name="secret-quotes" hidden$="[[!storedUser.loggedin]]">
+            <a href="[[rootPath]]secret-quotes">Secret Quotes</a>
+          </div>
         </iron-selector>
       </app-drawer>
 
