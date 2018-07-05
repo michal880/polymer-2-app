@@ -39,6 +39,7 @@
       on-error="handleUserError">
     </iron-ajax>
 
+    <app-location route="{{route}}"></app-location>
 
     <iron-localstorage name="user-storage" value="{{storedUser}}"></iron-localstorage>
     <brum-global-variable key="userData" value="{{storedUser}}"></brum-global-variable>
