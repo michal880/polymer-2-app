@@ -7,7 +7,7 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
-
+<link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
@@ -22,11 +22,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="my-icons.html">
 
-<link rel="lazy-import" href="my-view1.html">
-<link rel="lazy-import" href="my-view2.html">
-<link rel="lazy-import" href="my-view3.html">
-<link rel="lazy-import" href="my-view404.html">
+<link rel="lazy-import" href="home-quotes.html">
+<link rel="lazy-import" href="secret-quotes.html">
+<link rel="lazy-import" href="register-login.html">
+<link rel="lazy-import" href="not-found.html">
 
+
+<link rel="import" href="log-out.html">
+<app-location route="{{route}}"></app-location>
 <dom-module id="my-app">
   <template>
     <style>

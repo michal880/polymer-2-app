@@ -1,9 +1,11 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../bower_components/iron-localstorage/iron-localstorage.html">
 <link rel="import" href="../bower_components/iron-input/iron-input.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/brum-global-variable/brum-global-variable.html">
+<link rel="import" href="../bower_components/iron-localstorage/iron-localstorage.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="register-login">
@@ -32,11 +34,15 @@
         padding: 10px;
       }
     </style>
-    
+
     <iron-ajax id="registerLoginAjax" method="post" content-type="application/json" handle-as="text" on-response="handleUserResponse"
       on-error="handleUserError">
     </iron-ajax>
+
+
     <iron-localstorage name="user-storage" value="{{storedUser}}"></iron-localstorage>
+    <brum-global-variable key="userData" value="{{storedUser}}"></brum-global-variable>
+
     <div class="card">
       <div id="unauthenticated" hidden$="[[storedUser.loggedin]]">
         <h1>Log In</h1>
@@ -67,9 +73,13 @@
           <paper-button class="link" on-tap="postRegister">Sign Up</paper-button>
         </div>
       </div>
+
       <div id="authenticated" hidden$="[[!storedUser.loggedin]]">
         <h2>Hello, [[storedUser.name]]!</h2>
-        <p>You are currently logged in. You can access <a href="[[rootPath]]secret-quotes">Secret Quotes</a>!</p>
+        <p>You are currently logged in. You can access
+          <a href="[[rootPath]]secret-quotes">Secret Quotes</a>!</p>
+        <log-out stored-user="{{storedUser}}"></log-out>
+      </div>
     </div>
   </template>
 
@@ -113,6 +123,8 @@
             access_token: response.access_token,
             loggedin: true
           };
+          // redirect to Secret Quotes
+          this.set('route.path', '/secret-quotes');
         }
 
         // reset form data
